@@ -1,17 +1,17 @@
 #include <iostream>
-#include "Header.h"
+#include "Kirjautuminen.h"
 #include <string>
 #include <fstream>
 using namespace std;
 
-int Valikko(){
+int Valikko(){ // Käyttäjältä kysytään 
 	int vastaus;
 	cout << "Valikko: " << endl << "1.Tee käyttäjä" << endl << "2.Kirjaudu " << endl << "0. Lopeta" << endl;
 	cin >> vastaus;
 	return vastaus;
 }
 
-void Aloitus(int syotto) {
+void Aloitus(int syotto) {// Käyttäjän syötön perusteella:
 	switch (syotto){
 		case 1: {
 			LuoKayttaja(); // luodaan käyttäjä

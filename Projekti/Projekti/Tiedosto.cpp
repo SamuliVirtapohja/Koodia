@@ -2,46 +2,8 @@
 #include "Kirjautuminen.h"
 #include <string>
 #include <fstream>
+
 using namespace std;
-int Valikko(int vastaus){ // Käyttäjältä kysytään mitä tehdään.
-	cout << "Valikko: " << endl << "1.Tee käyttäjä" << endl << "2.Kirjaudu " << endl << "0. Lopeta" << endl;
-	cin >> vastaus;
-	return vastaus; // Käyttäjän syöttö palautetaan
-}
-
-void Aloitus() {// Käyttäjän syötön perusteella:
-	int kayttajansyotto = 10;
-
-	do // do/while looppi kirjautumismenuun ja käyttäjän luomiseen
-	{
-		kayttajansyotto = Valikko(kayttajansyotto); // palautetaan käyttäjänsyöttö
-		switch (kayttajansyotto) {// käyttäjän syötön perusteella
-		case 1: {
-			LuoKayttaja(); // luodaan käyttäjä
-			break;
-		}
-		case 2: {
-			Kirjautuminen();//kirjaudu
-			break;
-		}
-		}
-	} while (kayttajansyotto != 0);
-}
-
-void LuoKayttaja() { // funktio käyttäjän luomiselle
-	kayttaja uusikayttaja;
-
-	ofstream tiedosto;
-
-	cout << "Anna käyttäjänimi: "; // käyttäjältä kysytään nimi
-	cin >> ws >> uusikayttaja.nimi; // otetaan vain käyttäjän syöttö talteen
-	cout << "Anna salasana: "; // käyttäjältä kysytään salasana
-	cin >> ws >> uusikayttaja.salasana; // otetaan vain käyttäjän syöttä talteen
-	tiedosto.open("kayttajat.txt", ios_base::app); // avataan kayttajat.txt
-	tiedosto << uusikayttaja.nimi << " " << uusikayttaja.salasana << endl;//Kirjaa nimi ja salasana tiedostoon
-	tiedosto.close(); // suljetaan kayttajat.txt
-}
-
 
 void Kirjautuminen() { // funktio kirjautumiselle
 	ifstream tiedosto;
@@ -64,9 +26,9 @@ void Kirjautuminen() { // funktio kirjautumiselle
 				cout << "hienoa kirjauduit sisään" << endl;
 				tiedostonloppu = true; // asetetaan tiedostonloppu trueksi, niin ei tule virheilmoitusta väärästä käyttäjästä ja salasanasta
 			}
-		}							
+		}
 	}
-	else{// jos jokin meni mönkään tiedoston avaamisessa
+	else {// jos jokin meni mönkään tiedoston avaamisessa
 		cout << "tiedostoa ei voitu avata" << endl;
 	}
 
@@ -78,5 +40,16 @@ void Kirjautuminen() { // funktio kirjautumiselle
 	tiedosto.close();// suljetaan käyttäjät.txt
 }
 
+void LuoKayttaja() { // funktio käyttäjän luomiselle
+	kayttaja uusikayttaja;
 
+	ofstream tiedosto;
 
+	cout << "Anna käyttäjänimi: "; // käyttäjältä kysytään nimi
+	cin >> ws >> uusikayttaja.nimi; // otetaan vain käyttäjän syöttö talteen
+	cout << "Anna salasana: "; // käyttäjältä kysytään salasana
+	cin >> ws >> uusikayttaja.salasana; // otetaan vain käyttäjän syöttä talteen
+	tiedosto.open("kayttajat.txt", ios_base::app); // avataan kayttajat.txt
+	tiedosto << uusikayttaja.nimi << " " << uusikayttaja.salasana << endl;//Kirjaa nimi ja salasana tiedostoon
+	tiedosto.close(); // suljetaan kayttajat.txt
+}

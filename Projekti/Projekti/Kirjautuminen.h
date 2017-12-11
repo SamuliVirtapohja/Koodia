@@ -1,10 +1,10 @@
 #pragma once
-struct kayttaja {
+struct kayttaja {// luodaan käyttäjä tietue
 	char salasana[20], nimi[20];
-}; // luodaan käyttäjä tietue
+}; 
 
 // käyttäjän kanssa kohtaavat funktiot
-int Valikko(int); // valikon funktio
+int Valikko(); // valikon funktio
 void Aloitus(); // aloituksen funktio
 
 void asd(kayttaja);

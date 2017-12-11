@@ -18,7 +18,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Valikko.cpp">
+    <ClCompile Include="Tiedosto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kayttaja.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,8 +4,8 @@ struct kayttaja {
 }; // luodaan k‰ytt‰j‰ tietue
 
 
-int Valikko(); // valikon funktio
-void Aloitus(int); // aloituksen funktio
+int Valikko(int); // valikon funktio
+void Aloitus(); // aloituksen funktio
 void LuoKayttaja(); // k‰ytt‰j‰n luominen
 void Kirjautuminen(); // k‰ytt‰j‰n‰ kirjautuminen sis‰‰n
 

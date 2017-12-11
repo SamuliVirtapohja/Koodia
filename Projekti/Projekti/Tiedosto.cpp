@@ -53,3 +53,15 @@ void LuoKayttaja() { // funktio käyttäjän luomiselle
 	tiedosto << uusikayttaja.nimi << " " << uusikayttaja.salasana << endl;//Kirjaa nimi ja salasana tiedostoon
 	tiedosto.close(); // suljetaan kayttajat.txt
 }
+
+
+int HyvaksyttySyotto(int syotto) {// funktio käyttäjän syötön korjaamiselle
+	system("cls"); // tyhjentää ruudun
+	while (cin.fail()) {// aina kun käyttäjän syöttö ei toimi ajetaan uudestaan
+		cout << "Syota ohjeistettu numero (0-2): " << endl;
+		cin.clear(); // tyhjennetään käyttäjän syöttö
+		cin.ignore(256, '\n'); // ei välitä ennen välilyöntiä
+		cin >> syotto;
+	}
+	return syotto;
+}

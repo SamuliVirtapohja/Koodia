@@ -7,6 +7,7 @@ int Valikko(){ // Käyttäjältä kysytään mitä tehdään.
 	int vastaus;
 	cout << "Valikko: " << endl << "1.Tee käyttäjä" << endl << "2.Kirjaudu " << endl << "0. Lopeta" << endl;
 	cin >> vastaus;
+	vastaus = HyvaksyttySyotto(vastaus); // tarkistetaan käyttäjän syöttö
 	return vastaus; // Käyttäjän syöttö palautetaan
 }
 

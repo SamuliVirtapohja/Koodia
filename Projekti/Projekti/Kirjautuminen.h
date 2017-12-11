@@ -7,7 +7,7 @@ struct kayttaja {// luodaan käyttäjä tietue
 int Valikko(); // valikon funktio
 void Aloitus(); // aloituksen funktio
 
-void asd(kayttaja);
+int HyvaksyttySyotto(int); // tarkistetaan käyttäjän syöttöä
 
 // funktiot mitkä eivät koske käyttäjää mitenkään.
 void LuoKayttaja(); // käyttäjän luominen

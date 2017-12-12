@@ -12,3 +12,4 @@ void LuoKayttaja(); // käyttäjän luominen
 void Kirjautuminen(); // käyttäjänä kirjautuminen sisään
 int HyvaksyttySyotto(int); // tarkistetaan käyttäjän syöttöä
 int HashattySyotto(char*); // Salasana muutetaan hasheiksi
+bool NimenTarkastus(char*); // duplikaattien tarkastus tiedostosta

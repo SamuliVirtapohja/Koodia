@@ -19,7 +19,6 @@ void Kirjautuminen() { // funktio kirjautumiselle
 	cout << "\nAnna salasana: "; // kysytään salasana
 	cin >> ws >> user.salasana; // otetaan vain käyttäjän syöttö talteen
 
-
 	salasanamuunnos = user.salasana;// hashataan syöttäjän input
 	hashattysalasana = HashattySyotto(salasanamuunnos); 
 
@@ -51,19 +50,26 @@ void Kirjautuminen() { // funktio kirjautumiselle
 void LuoKayttaja() { // funktio käyttäjän luomiselle
 	kayttaja uusikayttaja;
 	int hashattysalasana; // hashatyn salasanan palautus, mikä menee tiedostoon
-	char* salasanamuunnos; // käytetään osoitinta salasanamuunnoksessa
+	char* salasanamuunnos, * nimentarkastus; // käytetään osoitinta salasanamuunnoksessa
 	ofstream tiedosto;
 
 	cout << "Anna käyttäjänimi: "; // käyttäjältä kysytään nimi
 	cin >> ws >> uusikayttaja.nimi; // otetaan vain käyttäjän syöttö talteen
+	nimentarkastus = uusikayttaja.nimi;
 	cout << "Anna salasana: "; // käyttäjältä kysytään salasana
 	cin >> ws >> uusikayttaja.salasana; // otetaan vain käyttäjän syöttö talteen
 	salasanamuunnos = uusikayttaja.salasana;
 	hashattysalasana = HashattySyotto(salasanamuunnos); // muutetaan salasana numeroiksi ihmiselle lukemattomaan muotoon
+	if (NimenTarkastus(nimentarkastus)) {
+		tiedosto.open("kayttajat.txt", ios_base::app); // avataan kayttajat.txt
+		tiedosto << uusikayttaja.nimi << " " << hashattysalasana << endl;//Kirjaa nimi ja salasana tiedostoon
+		tiedosto.close(); // suljetaan kayttajat.txt
+	}
+	else
+	{
+		cout << "Käyttäjänimi oli jo tiedostossa.";
+	}
 
-	tiedosto.open("kayttajat.txt", ios_base::app); // avataan kayttajat.txt
-	tiedosto << uusikayttaja.nimi << " " << hashattysalasana << endl;//Kirjaa nimi ja salasana tiedostoon
-	tiedosto.close(); // suljetaan kayttajat.txt
 }
 
 
@@ -83,4 +89,30 @@ int HashattySyotto(char* syotto) {// funktio salasanan hashaamiselle
 		hash = (hash + syotto[i]) * kerroin; // asetetaan käyttäjän syötöstä jokainen kirjain 
 	}
 	return hash; // palautetaan lopuksi numerot
+}
+
+bool NimenTarkastus(char* nimi) {
+	ifstream tiedosto;
+	string rivi, tiedostonimi;
+
+	stringstream ss;
+	string kayttajanimi;
+	ss << nimi;
+	ss >> kayttajanimi;
+
+
+	tiedosto.open("kayttajat.txt");
+	if (tiedosto.is_open()) {
+		while (getline(tiedosto, rivi)) {// haetaan jokaiselta riviltä tiedoston loppuun saakka
+			tiedostonimi = rivi.substr(0, rivi.find(" "));
+			if (tiedostonimi == kayttajanimi) {
+				return true;
+
+			}
+			else {
+				continue;
+			}
+		}
+	}
+	return false;
 }

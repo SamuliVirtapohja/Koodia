@@ -60,14 +60,14 @@ void LuoKayttaja() { // funktio käyttäjän luomiselle
 	cin >> ws >> uusikayttaja.salasana; // otetaan vain käyttäjän syöttö talteen
 	salasanamuunnos = uusikayttaja.salasana;
 	hashattysalasana = HashattySyotto(salasanamuunnos); // muutetaan salasana numeroiksi ihmiselle lukemattomaan muotoon
-	if (NimenTarkastus(nimentarkastus)) {
+	if (NimenTarkastus(nimentarkastus)) {// tarkistaa duplikaatit
 		tiedosto.open("kayttajat.txt", ios_base::app); // avataan kayttajat.txt
 		tiedosto << uusikayttaja.nimi << " " << hashattysalasana << endl;//Kirjaa nimi ja salasana tiedostoon
 		tiedosto.close(); // suljetaan kayttajat.txt
 	}
 	else
 	{
-		cout << "Käyttäjänimi oli jo tiedostossa.";
+		cout << "Käyttäjänimi oli jo tiedostossa."; // virheilmoitus jo luodusta käåyttäjästä
 	}
 
 }
@@ -95,7 +95,7 @@ bool NimenTarkastus(char* nimi) {
 	ifstream tiedosto;
 	string rivi, tiedostonimi;
 
-	stringstream ss;
+	stringstream ss; // muutetaan stringstreamin avulla char stringiksi
 	string kayttajanimi;
 	ss << nimi;
 	ss >> kayttajanimi;
@@ -104,15 +104,15 @@ bool NimenTarkastus(char* nimi) {
 	tiedosto.open("kayttajat.txt");
 	if (tiedosto.is_open()) {
 		while (getline(tiedosto, rivi)) {// haetaan jokaiselta riviltä tiedoston loppuun saakka
-			tiedostonimi = rivi.substr(0, rivi.find(" "));
+			tiedostonimi = rivi.substr(0, rivi.find(" ")); // etsitään käyttäjänimiä
 			if (tiedostonimi == kayttajanimi) {
-				return true;
+				return false; // jos käyttäjänimi on jo tiedostossa palautetaan false
 
 			}
 			else {
-				continue;
+				continue; // muuten jatketaan looppia
 			}
 		}
 	}
-	return false;
+	return true; // palautetaan truena jos käyttäjänimeä ei löydy
 }
